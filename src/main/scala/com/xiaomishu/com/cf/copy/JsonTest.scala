@@ -8,16 +8,16 @@ import scala.util.parsing.json.JSONArray
  */
 object JsonTest {
 
-   def main (args: Array[String]) {
+  def main(args: Array[String]) {
 
-     var listBuffer = ListBuffer[String]()
-     listBuffer += "dsf"
-     listBuffer += "dsff"
-     listBuffer += "dsf"
-     listBuffer += "sdfdsf"
+    var listBuffer = ListBuffer[String]()
+    listBuffer += "dsf"
+    listBuffer += "dsff"
+    listBuffer += "dsf"
+    listBuffer += "sdfdsf"
 
-     val jsonArray = new JSONArray(listBuffer.toList)
-     println(jsonArray)
+    val jsonArray = new JSONArray(listBuffer.toList)
+    println(jsonArray)
   }
 
 }

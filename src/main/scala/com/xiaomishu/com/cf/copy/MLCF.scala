@@ -10,7 +10,7 @@ object MLCF {
     val sc = new SparkContext(conf)
     val data = sc.textFile("mllib/ratings.dat")
 
-    val ratings = data.map(_.split("::") match { case Array(user, item, rate,timestamp) =>
+    val ratings = data.map(_.split("::") match { case Array(user, item, rate, timestamp) =>
       Rating(user.toInt, item.toInt, rate.toDouble)
     })
 
