@@ -284,23 +284,26 @@ object ResRecomendALS extends Serializable {
           }
       }
 
-      //def uuid = randomUUID.toString
-      //useridSA(i).hashCode().toString.reverse + "_" +
-      val rowkeyUserId = useridSA(i).toString
-      val put = new org.apache.hadoop.hbase.client.Put(Bytes.toBytes(rowkeyUserId))
-      val jsoanRes = new JSONArray(listBuffer.toList)
+      //入库
+      if(listBuffer!=null && listBuffer.length>0) {
+        //def uuid = randomUUID.toString
+        //useridSA(i).hashCode().toString.reverse + "_" +
+        val rowkeyUserId = useridSA(i).toString
+        val put = new org.apache.hadoop.hbase.client.Put(Bytes.toBytes(rowkeyUserId))
+        val jsoanRes = new JSONArray(listBuffer.toList)
 
-      val bf = ByteBuffer.allocate(4096)
-      val outputStream = new java.io.ByteArrayOutputStream()
-      val ob = new ObjectOutputStream(outputStream)
-      ob.writeObject(jsoanRes)
-      ob.flush()
-      bf.put(outputStream.toByteArray())
-      ob.close()
-      //write to hbase
-      put.add(Bytes.toBytes("top"), Bytes.toBytes("resid"), Bytes.toBytes(bf))
-      table.put(put);
-      table.flushCommits();
+        val bf = ByteBuffer.allocate(4096)
+        val outputStream = new java.io.ByteArrayOutputStream()
+        val ob = new ObjectOutputStream(outputStream)
+        ob.writeObject(jsoanRes)
+        ob.flush()
+        bf.put(outputStream.toByteArray())
+        ob.close()
+        //write to hbase
+        put.add(Bytes.toBytes("top"), Bytes.toBytes("resid"), Bytes.toBytes(bf))
+        table.put(put);
+        table.flushCommits();
+      }
       i += 1
     }
     //}
