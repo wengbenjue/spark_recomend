@@ -256,6 +256,7 @@ object ResRecomendALS extends Serializable {
     // for(userid <- userIds){
     val useridSA = userIds.toArray()
     var i = 0;
+    println("recomendings......")
     while (i < useridSA.length) {
       //predictByUser(userid,model,sc,ratings,params,table)
 
@@ -268,14 +269,14 @@ object ResRecomendALS extends Serializable {
       val recommendations = model.predict(shoudPredicateItemsRDD.map((useridSA(i), _))).collect.sortBy(_.rating).take(params.recomendNum)
       //val recommendations = m.predict(shoudPredicateItems.map((1,_))).collect.sortBy(_.rating).take(50)
       //recomends.......
-      println("recomendings......")
 
+      recommendations.foreach {r =>}
 
       var listBuffer = ListBuffer[String]()
       val jsonArray = new JSONArray(listBuffer.toList)
       recommendations.foreach { r =>
         val resrsc = r.product
-        val row1 =  new Get(Bytes.toBytes(resrsc))
+        val row1 =  new Get(Bytes.toBytes(resrsc.toString))
         val HBaseRow = table1.get(row1)
         if(HBaseRow != null && !HBaseRow.isEmpty){
           val result = Bytes.toString(HBaseRow.getValue(Bytes.toBytes("res"), Bytes.toBytes("resid")))
