@@ -29,6 +29,7 @@ import scala.collection.mutable.ListBuffer
 import scala.util.parsing.json.JSONArray
 
 
+
 /**
  * Created by wengbenjue on 2014/9/10.
  */
@@ -53,7 +54,7 @@ object ResRecomendALS extends Serializable {
                      separator: String = "\t",
                      userSeprator: String = "\t",
                      itemSeprator: String = "\t",
-                     zookeeper_quorum: String = "spark1.xiaomishu.com,spark2.xiaomishu.com,spark4.xiaomishu.com,spark9.xiaomishu.com,spark10.xiaomishu.com")
+                     zookeeper_quorum: String = "spark1.xiaomishu.com,spark2.xiaomishu.com,spark4.xiaomishu.com,spark5.xiaomishu.com,spark7.xiaomishu.com")
 
   def main(args: Array[String]) {
     val defaultParams = Params()
@@ -212,6 +213,7 @@ object ResRecomendALS extends Serializable {
       .setImplicitPrefs(params.implicitPrefs)
       .run(training)
 
+    training.unpersist(blocking = false)
 
     ///////////////////////////////
     val rmse = computeRmse(model, test, params.implicitPrefs)
@@ -220,6 +222,8 @@ object ResRecomendALS extends Serializable {
     ////////////////////////////
 
     println("model finished")
+
+    test.unpersist(blocking = false)
     //////////////////////////////////////////////////////////////////////////
     //predict Res
     // predictMode2Hbase(model,sc,params,ratings,table)
@@ -255,6 +259,8 @@ object ResRecomendALS extends Serializable {
 
     // for(userid <- userIds){
     val useridSA = userIds.toArray()
+
+    userIds.unpersist(blocking = false)
     var i = 0;
     println("recomendings......")
     while (i < useridSA.length) {
@@ -311,7 +317,7 @@ object ResRecomendALS extends Serializable {
     //userIds.foreach(userid => predictByUser(userid,model,sc,ratings,params,table))
 
     ////////////////////////////////////////////////////////////////////
-
+    itemIds.unpersist(blocking = false)
 
     sc.stop()
   }

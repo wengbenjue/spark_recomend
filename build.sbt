@@ -10,25 +10,25 @@ version := "1.0"
 scalaVersion := "2.10.4"
 
 libraryDependencies ++= Seq(
-  "org.apache.spark" % "spark-core_2.10" % "1.1.0-cdh5.2.1" % "provided",
-  "org.apache.spark" % "spark-mllib_2.10" % "1.1.0-cdh5.2.1" % "provided",
+  "org.apache.spark" % "spark-core_2.10" % "1.2.0-cdh5.3.0" % "provided",
+  "org.apache.spark" % "spark-mllib_2.10" % "1.2.0-cdh5.3.0" % "provided",
   "com.github.scopt" % "scopt_2.10" % "3.2.0",
-  "org.apache.hbase" % "hbase-client" % "0.98.6-cdh5.2.1" % "provided",
-  "org.apache.hbase" % "hbase-common" % "0.98.6-cdh5.2.1" % "provided",
-  "org.apache.hbase" % "hbase-hadoop-compat" % "0.98.6-cdh5.2.1" % "provided",
-  "org.apache.hbase" % "hbase-it" % "0.98.6-cdh5.2.1" % "provided",
-  "org.apache.hbase" % "hbase-hadoop2-compat" % "0.98.6-cdh5.2.1" % "provided",
-  "org.apache.hbase" % "hbase-prefix-tree" % "0.98.6-cdh5.2.1" % "provided",
-  "org.apache.hbase" % "hbase-protocol" % "0.98.6-cdh5.2.1" % "provided",
-  "org.apache.hbase" % "hbase-server" % "0.98.6-cdh5.2.1" % "provided",
-  "org.apache.hbase" % "hbase-shell" % "0.98.6-cdh5.2.1" % "provided",
-  "org.apache.hbase" % "hbase-testing-util" % "0.98.6-cdh5.2.1" % "provided",
-  "org.apache.hbase" % "hbase-thrift" % "0.98.6-cdh5.2.1" % "provided",
-  "org.apache.hadoop" % "hadoop-common" % "2.5.0-cdh5.2.1"  % "provided"
+  "org.apache.hbase" % "hbase-client" % "0.98.6-cdh5.3.0" % "provided",
+  "org.apache.hbase" % "hbase-common" % "0.98.6-cdh5.3.0" % "provided",
+  "org.apache.hbase" % "hbase-hadoop-compat" % "0.98.6-cdh5.3.0" % "provided",
+  "org.apache.hbase" % "hbase-it" % "0.98.6-cdh5.3.0" % "provided",
+  "org.apache.hbase" % "hbase-hadoop2-compat" % "0.98.6-cdh5.3.0" % "provided",
+  "org.apache.hbase" % "hbase-prefix-tree" % "0.98.6-cdh5.3.0" % "provided",
+  "org.apache.hbase" % "hbase-protocol" % "0.98.6-cdh5.3.0" % "provided",
+  "org.apache.hbase" % "hbase-server" % "0.98.6-cdh5.3.0" % "provided",
+  "org.apache.hbase" % "hbase-shell" % "0.98.6-cdh5.3.0" % "provided",
+  "org.apache.hbase" % "hbase-testing-util" % "0.98.6-cdh5.3.0" % "provided",
+  "org.apache.hbase" % "hbase-thrift" % "0.98.6-cdh5.3.0" % "provided",
+  "org.apache.hadoop" % "hadoop-common" % "2.5.0-cdh5.3.0"  % "provided"
 )
 
 resolvers ++= Seq(
-  "Akka Repository" at "http://repo.akka.io/releases/",
+  "Akka Repository" at "http://repo.akka.io/rel eases/",
   "cloudera-repo-releases" at "https://repository.cloudera.com/artifactory/repo/",
   "central" at "http://repo1.maven.org/maven2/"
 )

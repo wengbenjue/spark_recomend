@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="5.0">
+ <file name="d:\BaiduYunDownload\spark_resrecomend\src\main\scala\com\xiaomishu\com\cf\copy\testReadObj.scala">
+  <error line="1" source="org.scalastyle.file.HeaderMatchesChecker" severity="error" message="Header does not match expected text"></error>
+  <error line="19" source="org.scalastyle.file.FileLineLengthChecker" severity="error" message="File line length exceeds 100 characters"></error>
+ </file>
+ <file name="d:\BaiduYunDownload\spark_resrecomend\src\main\scala\com\xiaomishu\com\cf\copy\ByteConvertTest.scala">
+  <error line="1" source="org.scalastyle.file.HeaderMatchesChecker" severity="error" message="Header does not match expected text"></error>
+ </file>
+ <file name="d:\BaiduYunDownload\spark_resrecomend\src\main\scala\com\xiaomishu\com\cf\copy\JsonTest.scala">
+  <error line="1" source="org.scalastyle.file.HeaderMatchesChecker" severity="error" message="Header does not match expected text"></error>
+ </file>
+ <file name="d:\BaiduYunDownload\spark_resrecomend\src\main\scala\mapping\Mapping2Hbase.scala">
+  <error line="1" source="org.scalastyle.file.HeaderMatchesChecker" severity="error" message="Header does not match expected text"></error>
+  <error column="23" line="81" source="org.scalastyle.scalariform.SpacesAfterPlusChecker" severity="error" message="There should be a space after the plus (+) sign"></error>
+  <error column="27" line="81" source="org.scalastyle.scalariform.SpacesAfterPlusChecker" severity="error" message="There should be a space after the plus (+) sign"></error>
+  <error column="23" line="81" source="org.scalastyle.scalariform.SpacesBeforePlusChecker" severity="error" message="There should be a space before the plus (+) sign"></error>
+  <error column="27" line="81" source="org.scalastyle.scalariform.SpacesBeforePlusChecker" severity="error" message="There should be a space before the plus (+) sign"></error>
+  <error line="21" source="org.scalastyle.file.FileLineLengthChecker" severity="error" message="File line length exceeds 100 characters"></error>
+  <error line="33" source="org.scalastyle.file.FileLineLengthChecker" severity="error" message="File line length exceeds 100 characters"></error>
+  <error line="61" source="org.scalastyle.file.FileLineLengthChecker" severity="error" message="File line length exceeds 100 characters"></error>
+  <error line="80" source="org.scalastyle.file.FileLineLengthChecker" severity="error" message="File line length exceeds 100 characters"></error>
+ </file>
+ <file name="d:\BaiduYunDownload\spark_resrecomend\src\main\scala\com\xiaomishu\com\cf\copy\MovieLensALS.scala">
+  <error line="1" source="org.scalastyle.file.HeaderMatchesChecker" severity="error" message="Header does not match expected text"></error>
+  <error line="151" source="org.scalastyle.file.FileLineLengthChecker" severity="error" message="File line length exceeds 100 characters"></error>
+ </file>
+ <file name="d:\BaiduYunDownload\spark_resrecomend\src\main\scala\mapping\HbaseTool.scala">
+  <error line="1" source="org.scalastyle.file.HeaderMatchesChecker" severity="error" message="Header does not match expected text"></error>
+  <error column="18" line="72" source="org.scalastyle.scalariform.SpacesAfterPlusChecker" severity="error" message="There should be a space after the plus (+) sign"></error>
+  <error column="22" line="72" source="org.scalastyle.scalariform.SpacesAfterPlusChecker" severity="error" message="There should be a space after the plus (+) sign"></error>
+  <error column="18" line="77" source="org.scalastyle.scalariform.SpacesAfterPlusChecker" severity="error" message="There should be a space after the plus (+) sign"></error>
+  <error column="22" line="77" source="org.scalastyle.scalariform.SpacesAfterPlusChecker" severity="error" message="There should be a space after the plus (+) sign"></error>
+  <error column="18" line="72" source="org.scalastyle.scalariform.SpacesBeforePlusChecker" severity="error" message="There should be a space before the plus (+) sign"></error>
+  <error column="22" line="72" source="org.scalastyle.scalariform.SpacesBeforePlusChecker" severity="error" message="There should be a space before the plus (+) sign"></error>
+  <error column="18" line="77" source="org.scalastyle.scalariform.SpacesBeforePlusChecker" severity="error" message="There should be a space before the plus (+) sign"></error>
+  <error column="22" line="77" source="org.scalastyle.scalariform.SpacesBeforePlusChecker" severity="error" message="There should be a space before the plus (+) sign"></error>
+  <error line="56" source="org.scalastyle.file.FileLineLengthChecker" severity="error" message="File line length exceeds 100 characters"></error>
+  <error line="65" source="org.scalastyle.file.FileLineLengthChecker" severity="error" message="File line length exceeds 100 characters"></error>
+  <error line="72" source="org.scalastyle.file.FileLineLengthChecker" severity="error" message="File line length exceeds 100 characters"></error>
+  <error line="93" source="org.scalastyle.file.FileLineLengthChecker" severity="error" message="File line length exceeds 100 characters"></error>
+  <error column="6" line="101" source="org.scalastyle.scalariform.IfBraceChecker" severity="error" message="If block needs braces"></error>
+  <error column="6" line="114" source="org.scalastyle.scalariform.IfBraceChecker" severity="error" message="If block needs braces"></error>
+  <error source="org.scalastyle.file.NewLineAtEofChecker" severity="error" message="File must end with newline character"></error>
+ </file>
+ <file name="d:\BaiduYunDownload\spark_resrecomend\src\main\scala\com\xiaomishu\com\cf\copy\ReadModel.scala">
+  <error line="1" source="org.scalastyle.file.HeaderMatchesChecker" severity="error" message="Header does not match expected text"></error>
+  <error line="27" source="org.scalastyle.file.FileLineLengthChecker" severity="error" message="File line length exceeds 100 characters"></error>
+  <error line="67" source="org.scalastyle.file.FileLineLengthChecker" severity="error" message="File line length exceeds 100 characters"></error>
+  <error line="68" source="org.scalastyle.file.FileLineLengthChecker" severity="error" message="File line length exceeds 100 characters"></error>
+ </file>
+ <file name="d:\BaiduYunDownload\spark_resrecomend\src\main\scala\com\xiaomishu\com\cf\ResRecomendALS.scala">
+  <error line="1" source="org.scalastyle.file.HeaderMatchesChecker" severity="error" message="Header does not match expected text"></error>
+  <error line="56" source="org.scalastyle.file.FileLineLengthChecker" severity="error" message="File line length exceeds 100 characters"></error>
+  <error line="109" source="org.scalastyle.file.FileLineLengthChecker" severity="error" message="File line length exceeds 100 characters"></error>
+  <error line="111" source="org.scalastyle.file.FileLineLengthChecker" severity="error" message="File line length exceeds 100 characters"></error>
+  <error line="112" source="org.scalastyle.file.FileLineLengthChecker" severity="error" message="File line length exceeds 100 characters"></error>
+  <error line="267" source="org.scalastyle.file.FileLineLengthChecker" severity="error" message="File line length exceeds 100 characters"></error>
+  <error line="269" source="org.scalastyle.file.FileLineLengthChecker" severity="error" message="File line length exceeds 100 characters"></error>
+  <error line="270" source="org.scalastyle.file.FileLineLengthChecker" severity="error" message="File line length exceeds 100 characters"></error>
+  <error line="282" source="org.scalastyle.file.FileLineLengthChecker" severity="error" message="File line length exceeds 100 characters"></error>
+  <error line="325" source="org.scalastyle.file.FileLineLengthChecker" severity="error" message="File line length exceeds 100 characters"></error>
+  <error line="349" source="org.scalastyle.file.FileLineLengthChecker" severity="error" message="File line length exceeds 100 characters"></error>
+  <error line="351" source="org.scalastyle.file.FileLineLengthChecker" severity="error" message="File line length exceeds 100 characters"></error>
+  <error line="352" source="org.scalastyle.file.FileLineLengthChecker" severity="error" message="File line length exceeds 100 characters"></error>
+  <error line="374" source="org.scalastyle.file.FileLineLengthChecker" severity="error" message="File line length exceeds 100 characters"></error>
+  <error line="392" source="org.scalastyle.file.FileLineLengthChecker" severity="error" message="File line length exceeds 100 characters"></error>
+  <error line="395" source="org.scalastyle.file.FileLineLengthChecker" severity="error" message="File line length exceeds 100 characters"></error>
+  <error line="396" source="org.scalastyle.file.FileLineLengthChecker" severity="error" message="File line length exceeds 100 characters"></error>
+  <error column="6" line="237" source="org.scalastyle.scalariform.IfBraceChecker" severity="error" message="If block needs braces"></error>
+  <error column="6" line="245" source="org.scalastyle.scalariform.IfBraceChecker" severity="error" message="If block needs braces"></error>
+ </file>
+ <file name="d:\BaiduYunDownload\spark_resrecomend\src\main\scala\com\xiaomishu\com\cf\copy\MLCF.scala">
+  <error line="1" source="org.scalastyle.file.HeaderMatchesChecker" severity="error" message="Header does not match expected text"></error>
+ </file>
+</checkstyle>
