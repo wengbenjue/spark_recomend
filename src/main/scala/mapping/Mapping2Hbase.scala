@@ -82,9 +82,6 @@ object Mapping2Hbase {
       (fields(0),fields(1))
       // println(fields(0)+":"+fields(1))
     }
-   // listMp.foreach(println)
-    // listMp.map( (Mapping2Hbase.hb.putSingleValue("mapping",_._1,"res","resid",_._2)))
-
   }
 }
 
