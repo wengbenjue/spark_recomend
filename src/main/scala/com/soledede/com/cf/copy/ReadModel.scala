@@ -1,4 +1,4 @@
-package com.xiaomishu.com.cf.copy
+package com.soledede.com.cf.copy
 
 import java.io.{FileInputStream, ObjectInputStream}
 
@@ -6,7 +6,7 @@ import scala.io.Source
 
 
 /**
- * Created by wengbenjue on 2014/9/11.
+ * Created by soledede on 2014/9/11.
  */
 object ReadModel {
   var model_path = "D:\\movielen\\model.bin"

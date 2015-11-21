@@ -1,4 +1,4 @@
-package com.xiaomishu.com.cf.copy
+package com.soledede.com.cf.copy
 
 import org.apache.spark.{SparkConf, SparkContext}
 import org.apache.spark.SparkContext._

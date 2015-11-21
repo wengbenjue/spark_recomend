@@ -1,10 +1,10 @@
-package com.xiaomishu.com.cf.copy
+package com.soledede.com.cf.copy
 
 import scala.collection.mutable.ListBuffer
 import scala.util.parsing.json.JSONArray
 
 /**
- * Created by wengbenjue on 2014/9/15.
+ * Created by soledede on 2014/9/15.
  */
 object JsonTest {
 

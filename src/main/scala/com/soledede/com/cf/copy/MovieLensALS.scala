@@ -1,4 +1,4 @@
-package com.xiaomishu.com.cf.copy
+package com.soledede.com.cf.copy
 
 import java.io.{FileOutputStream, ObjectOutputStream}
 
@@ -12,7 +12,7 @@ import org.apache.spark.{SparkConf, SparkContext}
 import scopt.OptionParser
 
 /**
- * Created by wengbenjue on 2014/9/10.
+ * Created by soledede on 2014/9/10.
  */
 object MovieLensALS {
 
@@ -148,7 +148,7 @@ object MovieLensALS {
     val oos = new ObjectOutputStream(fos)
     oos.writeObject(model)
     oos.close
-    println("model已写入/home/hadoop/mllib/model/model.bin not hdfs://h1.xiaomishu.com:8020/user/hadoop/mllib/model.bin")
+    println("model已写入/home/hadoop/mllib/model/model.bin not hdfs://spark1.soledede.com:8020/user/hadoop/mllib/model.bin")
 
     sc.stop()
   }

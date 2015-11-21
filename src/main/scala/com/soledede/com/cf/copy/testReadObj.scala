@@ -1,9 +1,9 @@
-package com.xiaomishu.com.cf.copy
+package com.soledede.com.cf.copy
 
 import java.io.{FileInputStream, ObjectInputStream}
 
 /**
- * Created by wengbenjue on 2014/9/12.
+ * Created by soledede on 2014/9/12.
  */
 object testReadObj {
 
