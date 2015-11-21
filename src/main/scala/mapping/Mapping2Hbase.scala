@@ -59,7 +59,7 @@ object Mapping2Hbase {
           |For example, the following command runs this app on a synthetic dataset:
           |
           |  java -jar xxx.jar --zookeeper_quorum  spark2.soledede.com,spark3.soledede.com,spark1.soledede.com \
-          |  /home/hadoop/recomend/res_mapping.txt
+          |  /home/hadoop/recomend/fruit_mapping.txt
         """.stripMargin)
     }
 

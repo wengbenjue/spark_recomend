@@ -33,7 +33,7 @@ resolvers ++= Seq(
   "central" at "http://repo1.maven.org/maven2/"
 )
 
-mainClass in assembly := Some("com.xiaomishu.com.cf.ResRecomendALS")
+mainClass in assembly := Some("com.xiaomishu.com.cf.FruitRecomendALS")
 
 assemblyOption in assembly ~= {
   _.copy(includeScala = false)
