@@ -1,4 +1,4 @@
-package mapping
+package com.soledede.com.cf.mapping
 
 /**
  * Created by wengbenjue on 2014/9/15.

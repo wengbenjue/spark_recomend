@@ -1,4 +1,4 @@
-package mapping
+package com.soledede.com.cf.mapping
 
 import _root_.scopt.OptionParser
 import org.apache.hadoop.conf.Configuration

@@ -448,7 +448,7 @@
                 </descriptorRefs>
                 <archive>
                     <manifest>
-                        <mainClass>mapping.Mapping2Hbase</mainClass>
+                        <mainClass>com.soledede.com.cf.mapping.Mapping2Hbase</mainClass>
                     </manifest>
                 </archive>
             </configuration>
