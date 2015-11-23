@@ -1,4 +1,4 @@
-package com.soledede.com.cf.mapping
+package com.soledede.cf.mapping
 
 import _root_.scopt.OptionParser
 import org.apache.hadoop.conf.Configuration
@@ -27,8 +27,8 @@ object Mapping2Hbase {
 
   case class Params(
                      input: String = null,
-                     hbase_mapping_table:String = "fruitMapping",
-                     hbase_columnfamily:String = "fruitCF",
+                     hbase_mapping_table:String = "itemMapping",
+                     hbase_columnfamily:String = "itemCF",
                      file_separator:String = "\\t",
                      zookeeper_quorum: String = "spark2.soledede.com,spark3.soledede.com,spark1.soledede.com"
                      )
@@ -59,7 +59,7 @@ object Mapping2Hbase {
           |For example, the following command runs this app on a synthetic dataset:
           |
           |  java -jar xxx.jar --zookeeper_quorum  spark2.soledede.com,spark3.soledede.com,spark1.soledede.com \
-          |  /home/hadoop/recomend/fruit_mapping.txt
+          |  /home/hadoop/recomend/item_mapping.c
         """.stripMargin)
     }
 
@@ -77,7 +77,7 @@ object Mapping2Hbase {
     Mapping2Hbase.hb.createTable(params.hbase_mapping_table,params.hbase_columnfamily);
     var listMp = Source.fromFile(params.input).getLines().map { line =>
       val fields = line.split(params.file_separator)
-      Mapping2Hbase.hb.putSingleValue(params.hbase_mapping_table,fields(0),params.hbase_columnfamily,"fruitId",fields(1))
+      Mapping2Hbase.hb.putSingleValue(params.hbase_mapping_table,fields(0),params.hbase_columnfamily,"itemid",fields(1))
       println(fields(0)+":"+fields(1))
       (fields(0),fields(1))
       // println(fields(0)+":"+fields(1))

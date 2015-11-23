@@ -1,4 +1,4 @@
-package com.soledede.com.cf.copy
+package com.soledede.cf.copy
 
 import scala.collection.mutable.ListBuffer
 import scala.util.parsing.json.JSONArray

@@ -1,4 +1,4 @@
-package com.soledede.com.cf
+package com.soledede.cf
 
 import java.io.{ObjectOutputStream, Serializable}
 import java.nio.ByteBuffer
