@@ -75,12 +75,11 @@ object Mapping2Hbase {
     confHbase.set("hbase.zookeeper.quorum",params.zookeeper_quorum);
     Mapping2Hbase.hb.setConf(confHbase)
     Mapping2Hbase.hb.createTable(params.hbase_mapping_table,params.hbase_columnfamily);
-    var listMp = Source.fromFile(params.input).getLines().map { line =>
+    var listMp = Source.fromFile(params.input).getLines().foreach{ line =>
       val fields = line.split(params.file_separator)
       Mapping2Hbase.hb.putSingleValue(params.hbase_mapping_table,fields(0),params.hbase_columnfamily,"itemid",fields(1))
-      println(fields(0)+":"+fields(1))
-      (fields(0),fields(1))
-      // println(fields(0)+":"+fields(1))
+      println(fields(0)+": XXXXXX"+fields(1).substring(7))
+      //(fields(0),fields(1))
     }
   }
 }
