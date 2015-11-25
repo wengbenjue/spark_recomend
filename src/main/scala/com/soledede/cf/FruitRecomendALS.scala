@@ -234,7 +234,7 @@ object FruitRecomendALS extends Serializable {
      test.unpersist(blocking = false)
      //////////////////////////////////////////////////////////////////////////
      //predict Res
-     // predictMode2Hbase(model,sc,params,ratings,table)
+
 
      //read all userids
      /**
@@ -273,19 +273,20 @@ object FruitRecomendALS extends Serializable {
      while (i < useridSA.length) {
        //predictByUser(userid,model,sc,ratings,params,table)
 
-       // users have made rating
+       // rating taht useridSA(i) have made
        val userItemRatings = ratings.filter(line => line.user == useridSA(i))
        ratings.unpersist(blocking = false)
 
 
-       //all itemids that users have made rating
+       //all itemids that useridSA(i)) have made rating
        val myRatedItemids = userItemRatings.map(_.product.toInt).collect()
 
-       //items that users have not made rating,it's lost rating value
+       //items that useridSA(i)) have not made rating,it's lost rating value
        val shoudPredicateItemsRDD = sc.parallelize(itemIds.filter(!myRatedItemids.contains(_)).collect())
 
        println("predict starting....................\ndefault recomend " + params.recomendNum)
-       //predict the rating of items  that have not been rated and sort by rating, and then get the top recomend number rating
+       //predict the rating of items  that have not been  rated by useridSA(i)) and sort by rating, and then get the top recomend number rating
+       //predeict(userid->itemid)=>rating
        val recommendations = model.predict(shoudPredicateItemsRDD.map((useridSA(i), _))).collect.sortBy(_.rating).take(params.recomendNum)
 
        //convert out rating is integer to uuid with string
@@ -297,8 +298,10 @@ object FruitRecomendALS extends Serializable {
          val HBaseRow = table1.get(row1)
          if(HBaseRow != null && !HBaseRow.isEmpty){
            val result = Bytes.toString(HBaseRow.getValue(Bytes.toBytes("itemCF"), Bytes.toBytes("itemId")))
+           if(result!=null && !result.trim.equalsIgnoreCase(""))
            listBuffer += result
-           println(s"为用户 ${useridSA(i)} 推荐水果： $result")
+           //println(s"为用户 ${useridSA(i)} 推荐水果： $result")
+           println(s"为用户 ${useridSA(i)} 推荐水果： $fruit")
            }
        }
 
