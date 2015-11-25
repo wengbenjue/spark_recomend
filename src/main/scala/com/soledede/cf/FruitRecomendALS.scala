@@ -150,7 +150,7 @@ object FruitRecomendALS extends Serializable {
 
 
      //val table1 = new HTable(confHbase, "fruitMpping")
-     val table1 = connection.getTable(TableName.valueOf("fruitMapping"))
+     val table1 = connection.getTable(TableName.valueOf("ItemMapping"))
 
      val ratings = sc.textFile(params.input).filter{ line =>
          try {
@@ -296,7 +296,7 @@ object FruitRecomendALS extends Serializable {
          val row1 =  new Get(Bytes.toBytes(fruit.toString))
          val HBaseRow = table1.get(row1)
          if(HBaseRow != null && !HBaseRow.isEmpty){
-           val result = Bytes.toString(HBaseRow.getValue(Bytes.toBytes("fruitCF"), Bytes.toBytes("fruitId")))
+           val result = Bytes.toString(HBaseRow.getValue(Bytes.toBytes("itemCF"), Bytes.toBytes("itemId")))
            listBuffer += result
            println(s"为用户 ${useridSA(i)} 推荐水果： $result")
            }
