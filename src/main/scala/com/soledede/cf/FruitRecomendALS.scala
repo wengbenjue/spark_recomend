@@ -150,7 +150,7 @@ object FruitRecomendALS extends Serializable {
 
 
      //val table1 = new HTable(confHbase, "fruitMpping")
-     val table1 = connection.getTable(TableName.valueOf("ItemMapping"))
+     val table1 = connection.getTable(TableName.valueOf("itemMapping"))
 
      val ratings = sc.textFile(params.input).filter{ line =>
          try {
