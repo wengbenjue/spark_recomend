@@ -5,7 +5,7 @@ import org.apache.hadoop.hive.ql.exec.UDF
 /**
  * Created by soledede on 15/11/22.
  */
-class DecayUDF extends UDF {
+class DecayUDF extends UDF{
 
 
   def evaluate(x: Double): Double = evaluate(3.6f, x, 3*60*60*1000f, 1f)
@@ -29,6 +29,6 @@ class DecayUDF extends UDF {
 
 object DecayUDF {
   def main(args: Array[String]) {
-    println(new DecayUDF().evaluate(3*60*1000))
+    println(new DecayUDF().evaluate(4*60*60*1000))
   }
 }
