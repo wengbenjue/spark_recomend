@@ -41,7 +41,7 @@ object FruitRecomendALS extends Serializable {
                       implicitPrefs: Boolean = false,
                       userInput: String = null,
                       itemInput: String = null,
-                      recomendNum: Int = 50,
+                      recommendNum: Int = 50,
                       separator: String = "\t",
                       userSeprator: String = "\t",
                       itemSeprator: String = "\t",
@@ -50,16 +50,16 @@ object FruitRecomendALS extends Serializable {
    def main(args: Array[String]) {
      val defaultParams = Params()
      val parser = new OptionParser[Params]("FruitRecomendALS") {
-       head("FruitRecomendALS: ALS for fruit recomended.")
+       head("FruitRecomendALS: ALS for fruit recommended.")
        opt[Int]("rank")
          .text(s"rank, default: ${defaultParams.rank}}")
          .action((x, c) => c.copy(rank = x))
        opt[Int]("numIterations")
          .text(s"number of iterations, default: ${defaultParams.numIterations}")
          .action((x, c) => c.copy(numIterations = x))
-       opt[Int]("recomendNum")
-         .text(s"recomendNum, default: ${defaultParams.recomendNum}}")
-         .action((x, c) => c.copy(recomendNum = x))
+       opt[Int]("recommendNum")
+         .text(s"recommendNum, default: ${defaultParams.recommendNum}}")
+         .action((x, c) => c.copy(recommendNum = x))
        opt[Double]("lambda")
          .text(s"lambda (smoothing constant), default: ${defaultParams.lambda}")
          .action((x, c) => c.copy(lambda = x))
@@ -122,27 +122,27 @@ object FruitRecomendALS extends Serializable {
      val sc = new SparkContext(conf)
 
 
-     //lond the config of Hbase，create Table recomend
+     //lond the config of Hbase，create Table recommend
      val confHbase = HBaseConfiguration.create()
      confHbase.set("hbase.zookeeper.property.clientPort", "2181")
      confHbase.set("hbase.zookeeper.quorum",params.zookeeper_quorum)
      confHbase.set("hbase.master", "spark1.soledede.com:60000")
      confHbase.addResource("/opt/cloudera/parcels/CDH/lib/hbase/conf/hbase-site.xml")
-     confHbase.set(TableInputFormat.INPUT_TABLE, "recomend")
+     confHbase.set(TableInputFormat.INPUT_TABLE, "recommend")
 
      //val admin = new HBaseAdmin(confHbase)
      val connection = ConnectionFactory.createConnection(confHbase)
      val admin = connection.getAdmin
-     if (!admin.isTableAvailable(TableName.valueOf("recomend"))) {
+     if (!admin.isTableAvailable(TableName.valueOf("recommend"))) {
        print("Table Not Exists! Create Table")
-       //val tableDesc = new HTableDescriptor("recomend")
-       val tableDesc = new HTableDescriptor(TableName.valueOf("recomend"))
+       //val tableDesc = new HTableDescriptor("recommend")
+       val tableDesc = new HTableDescriptor(TableName.valueOf("recommend"))
        tableDesc.addFamily(new HColumnDescriptor("fruitTopCF".getBytes()))
        admin.createTable(tableDesc)
      }
 
 
-     val table = connection.getTable(TableName.valueOf("recomend"))
+     val table = connection.getTable(TableName.valueOf("recommend"))
 
      //val table = new HTable(confHbase, "recomend")
 
@@ -268,7 +268,7 @@ object FruitRecomendALS extends Serializable {
      val useridSA = userIds.collect()
 
      userIds.unpersist(blocking = false)
-     println("recomendings......")
+     println("recommendings......")
      var i = 0;
      while (i < useridSA.length) {
        //predictByUser(userid,model,sc,ratings,params,table)
@@ -284,50 +284,51 @@ object FruitRecomendALS extends Serializable {
        //items that useridSA(i)) have not made rating,it's lost rating value
        val shoudPredicateItemsRDD = sc.parallelize(itemIds.filter(!myRatedItemids.contains(_)).collect())
 
-       println("default recomend " + params.recomendNum)
-       //predict the rating of items  that have not been  rated by useridSA(i)) and sort by rating, and then get the top recomend number rating
+       println("default recommend " + params.recommendNum)
+       //predict the rating of items  that have not been  rated by useridSA(i)) and sort by rating, and then get the top recommend number rating
        //predeict(userid->itemid)=>rating
-       val recommendations = model.predict(shoudPredicateItemsRDD.map((useridSA(i), _))).collect.sortBy(_.rating).take(params.recomendNum)
+       val recommendations = model.predict(shoudPredicateItemsRDD.map((useridSA(i), _))).collect.sortBy(_.rating).take(params.recommendNum)
 
        //convert out rating is integer to uuid with string
-       recommendations.foreach {r =>}
-       var listBuffer = ListBuffer[String]()
-       recommendations.foreach { r =>
-         val fruit = r.product
-         val row1 =  new Get(Bytes.toBytes(fruit.toString))
-         val HBaseRow = table1.get(row1)
-         if(HBaseRow != null && !HBaseRow.isEmpty){
-           val result = Bytes.toString(HBaseRow.getValue(Bytes.toBytes("itemCF"), Bytes.toBytes("itemId")))
-           if(result!=null && !result.trim.equalsIgnoreCase(""))
-           listBuffer += result
-           //println(s"为用户 ${useridSA(i)} 推荐水果： $result")
-           println(s"为用户 ${useridSA(i)} 推荐水果： $fruit")
+
+         var listBuffer = ListBuffer[String]()
+         recommendations.foreach { r =>
+           val fruit = r.product
+           val row1 = new Get(Bytes.toBytes(fruit.toString))
+           val HBaseRow = table1.get(row1)
+           if (HBaseRow != null && !HBaseRow.isEmpty) {
+            // val result = Bytes.toString(HBaseRow.getValue(Bytes.toBytes("itemCF"), Bytes.toBytes("itemId")))
+             //if (result != null && !result.trim.equalsIgnoreCase(""))
+              // listBuffer += result
+             //println(s"为用户 ${useridSA(i)} 推荐水果： $result")
+             listBuffer += fruit.toString
+             println(s"为用户 ${useridSA(i)} 推荐水果： $fruit")
            }
-       }
+         }
 
-       //入库
-       if(listBuffer!=null && listBuffer.length>0) {
-         //val rowkeyUserId = useridSA(i).toString
-         val rowkeyUserId = useridSA(i).hashCode().toString.reverse + "_"+randomUUID.toString
-         val put = new org.apache.hadoop.hbase.client.Put(Bytes.toBytes(rowkeyUserId))
-         val jsoanRes = new JSONArray(listBuffer.toList)
+         //入库
+         if (listBuffer != null && listBuffer.length > 0) {
+           //val rowkeyUserId = useridSA(i).toString
+           val rowkeyUserId = useridSA(i).hashCode().toString.reverse + "_" + randomUUID.toString
+           val put = new org.apache.hadoop.hbase.client.Put(Bytes.toBytes(rowkeyUserId))
+           val jsoanRes = new JSONArray(listBuffer.toList)
 
-         val bf = ByteBuffer.allocate(4096)
-         val outputStream = new java.io.ByteArrayOutputStream()
-         val ob = new ObjectOutputStream(outputStream)
-         ob.writeObject(jsoanRes.toString())
-         ob.flush()
-         bf.put(outputStream.toByteArray())
-         ob.close()
-         //write to hbase
-         //put.add(Bytes.toBytes("top"), Bytes.toBytes("resid"), Bytes.toBytes(bf))
-         put.addColumn(Bytes.toBytes("fruitTopCF"), Bytes.toBytes("fruitId"), Bytes.toBytes(bf))
-         table.put(put)
-         //table.flushCommits()
-       }
-       i += 1
+           val bf = ByteBuffer.allocate(4096)
+           val outputStream = new java.io.ByteArrayOutputStream()
+           val ob = new ObjectOutputStream(outputStream)
+           ob.writeObject(jsoanRes)
+           ob.flush()
+           bf.put(outputStream.toByteArray())
+           ob.close()
+           //write to hbase
+           //put.add(Bytes.toBytes("top"), Bytes.toBytes("itemid"), Bytes.toBytes(bf))
+           put.addColumn(Bytes.toBytes("fruitTopCF"), Bytes.toBytes("fruitId"), Bytes.toBytes(bf))
+           table.put(put)
+           //table.flushCommits()
+         }
+         i += 1
+
      }
-
      table.close()
      table1.close()
 
