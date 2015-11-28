@@ -268,8 +268,8 @@ object FruitRecomendALS extends Serializable {
      val useridSA = userIds.collect()
 
      userIds.unpersist(blocking = false)
-     var i = 0;
      println("recomendings......")
+     var i = 0;
      while (i < useridSA.length) {
        //predictByUser(userid,model,sc,ratings,params,table)
 
@@ -284,7 +284,7 @@ object FruitRecomendALS extends Serializable {
        //items that useridSA(i)) have not made rating,it's lost rating value
        val shoudPredicateItemsRDD = sc.parallelize(itemIds.filter(!myRatedItemids.contains(_)).collect())
 
-       println("predict starting....................\ndefault recomend " + params.recomendNum)
+       println("default recomend " + params.recomendNum)
        //predict the rating of items  that have not been  rated by useridSA(i)) and sort by rating, and then get the top recomend number rating
        //predeict(userid->itemid)=>rating
        val recommendations = model.predict(shoudPredicateItemsRDD.map((useridSA(i), _))).collect.sortBy(_.rating).take(params.recomendNum)
@@ -327,6 +327,9 @@ object FruitRecomendALS extends Serializable {
        }
        i += 1
      }
+
+     table.close()
+     table1.close()
 
      itemIds.unpersist(blocking = false)
 
