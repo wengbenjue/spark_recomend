@@ -311,12 +311,13 @@ object FruitRecomendALS extends Serializable {
            //val rowkeyUserId = useridSA(i).toString
            val rowkeyUserId = useridSA(i).hashCode().toString.reverse + "_" + randomUUID.toString
            val put = new org.apache.hadoop.hbase.client.Put(Bytes.toBytes(rowkeyUserId))
-           val jsoanRes = new JSONArray(listBuffer.toList)
+           //val jsoanRes = new JSONArray(listBuffer.toList)
 
            val bf = ByteBuffer.allocate(4096)
            val outputStream = new java.io.ByteArrayOutputStream()
            val ob = new ObjectOutputStream(outputStream)
-           ob.writeObject(jsoanRes)
+          // ob.writeObject(jsoanRes)
+           ob.writeObject(listBuffer)
            ob.flush()
            bf.put(outputStream.toByteArray())
            ob.close()
