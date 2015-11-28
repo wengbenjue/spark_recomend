@@ -2,15 +2,13 @@ package com.soledede.cf
 
 import java.io.{ObjectOutputStream, Serializable}
 import java.nio.ByteBuffer
-import java.util.UUID.randomUUID
 
 import com.esotericsoftware.kryo.Kryo
-import org.apache.hadoop.hbase.util.Bytes
-import org.apache.hadoop.hbase.{TableName, HColumnDescriptor, HTableDescriptor, HBaseConfiguration}
 import org.apache.hadoop.hbase.client._
 import org.apache.hadoop.hbase.mapreduce.TableInputFormat
+import org.apache.hadoop.hbase.util.Bytes
+import org.apache.hadoop.hbase.{HBaseConfiguration, HColumnDescriptor, HTableDescriptor, TableName}
 import org.apache.log4j.{Level, Logger}
-import org.apache.spark.SparkContext._
 import org.apache.spark.mllib.recommendation.{ALS, MatrixFactorizationModel, Rating}
 import org.apache.spark.rdd.RDD
 import org.apache.spark.serializer.{KryoRegistrator, KryoSerializer}
