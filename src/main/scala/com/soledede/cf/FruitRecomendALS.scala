@@ -308,15 +308,20 @@ object FruitRecomendALS extends Serializable {
 
          //入库
          if (listBuffer != null && listBuffer.length > 0) {
+
+
            //val rowkeyUserId = useridSA(i).toString
            val rowkeyUserId = (useridSA(i).hashCode().toString+ "_" + randomUUID).reverse
            val put = new org.apache.hadoop.hbase.client.Put(Bytes.toBytes(rowkeyUserId))
-           val jsoanRes = new JSONArray(listBuffer.toList)
+           //val jsoanRes = new JSONArray(listBuffer.toList)
 
+           val builder = new StringBuilder
+           builder.append("[")
+           listBuffer.foreach(builder.append(_))
            val bf = ByteBuffer.allocate(4096)
            val outputStream = new java.io.ByteArrayOutputStream()
            val ob = new ObjectOutputStream(outputStream)
-           ob.writeObject(jsoanRes.toString())
+           ob.writeObject(builder.toString())
            //ob.writeObject(listBuffer)
            ob.flush()
            bf.put(outputStream.toByteArray())
