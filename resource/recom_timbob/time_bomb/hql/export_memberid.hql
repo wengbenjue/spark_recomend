@@ -1,0 +1,1 @@
+select memberid from scores;
