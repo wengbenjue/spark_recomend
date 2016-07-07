@@ -1,3 +1,3 @@
 echo "start....."
-nohup sudo wget -c ftp://222.73.49.39:2001/$1.zip --ftp-user=XMSFTP --ftp-password=123LOG#@! -P /home/log_data/ &
+nohup sudo wget -c ftp://xxx.xx.xx.xxx:xxxx/$1.zip --ftp-user=xxx --ftp-password=xxx#@! -P /home/log_data/ &
 echo "ovet...."
